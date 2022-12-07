@@ -4,6 +4,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day05;
 
 #[derive(Parser)]
 struct Args {
@@ -22,6 +23,7 @@ fn main() {
         2 => day02::execute(args.part),
         3 => day03::execute(args.part),
         4 => day04::execute(args.part),
+        5 => day05::execute(args.part),
         _ => panic!("Day not implemented")
     }
 }
