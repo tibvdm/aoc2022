@@ -67,6 +67,7 @@ pub fn part2() -> String {
             .collect::<Vec<usize>>()
         )
         .for_each(|m| {
+            // This could be done in a more efficient way, but I'm lazy
             let n = stacks[m[1] - 1].len();
             let tmp = stacks[m[1] - 1].drain(n - m[0] .. n).collect::<Vec<char>>();
             stacks[m[2] - 1].extend_from_slice(tmp.as_slice())
