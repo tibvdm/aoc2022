@@ -3,6 +3,7 @@ use clap::Parser;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 #[derive(Parser)]
 struct Args {
@@ -20,6 +21,7 @@ fn main() {
         1 => day01::execute(args.part),
         2 => day02::execute(args.part),
         3 => day03::execute(args.part),
+        4 => day04::execute(args.part),
         _ => panic!("Day not implemented")
     }
 }
