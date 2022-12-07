@@ -1,35 +1,33 @@
-fn char_to_u32(c: char) -> u32 {
-    if c >= 'a' {
-        c as u32 - 'a' as u32 + 1
+fn byte_to_u32(&c: &u8) -> u32 {
+    if c >= b'a' {
+        c as u32 - b'a' as u32 + 1
     } else {
-        c as u32 - 'A' as u32 + 27
+        c as u32 - b'A' as u32 + 27
     }
 }
 
 pub fn part1() -> u32 {
-    include_str!("input.txt")
-        .lines()
+    include_bytes!("input.txt")
+        .split(|&b| b == b'\n')
         .map(|line| line.split_at(line.len() / 2))
         .map(|(a, b)| b
-            .chars()
-            .filter(|&c| a.contains(c))
-            .map(char_to_u32)
-            .last()
+            .iter()
+            .find(|&c| a.contains(c))
+            .map(byte_to_u32)
             .unwrap()
         )
         .sum::<u32>()
 }
 
 pub fn part2() -> u32 {
-    include_str!("input.txt")
-        .lines()
-        .collect::<Vec<&str>>()
+    include_bytes!("input.txt")
+        .split(|&b| b == b'\n')
+        .collect::<Vec<_>>()
         .chunks(3)
         .map(|line_trio| line_trio[0]
-            .chars()
-            .filter(|&c| line_trio[1].contains(c) && line_trio[2].contains(c))
-            .map(char_to_u32)
-            .last()
+            .iter()
+            .find(|&c| line_trio[1].contains(c) && line_trio[2].contains(c))
+            .map(byte_to_u32)
             .unwrap()
         )
         .sum::<u32>()
