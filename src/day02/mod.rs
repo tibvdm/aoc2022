@@ -41,5 +41,5 @@ pub fn execute(part: u8) {
         _ => panic!("This part is not implemented!")
     };
 
-    println!("Day: {} (Part {}) resulted in {}!", 1, part, result);
+    println!("Day: {} (Part {}) resulted in {}!", 2, part, result);
 }
