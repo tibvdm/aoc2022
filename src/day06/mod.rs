@@ -1,21 +1,19 @@
-pub fn part1() -> u32 {
+fn find_marker(marker_size: usize) -> u32 {
     include_str!("input.txt")
         .as_bytes()
-        .windows(4)
+        .windows(marker_size)
         .take_while(|&w| 
-            w[0] == w[1] || w[0] == w[2] || w[0] == w[3] || w[1] == w[2] || w[1] == w[3] || w[2] == w[3]
+            (0 .. marker_size - 1).any(|i| (i + 1 .. marker_size).any(|j| w[i] == w[j]))
         )
-        .count() as u32 + 4
+        .count() as u32 + marker_size as u32
+}
+
+pub fn part1() -> u32 {
+    find_marker(4)
 }
 
 pub fn part2() -> u32 {
-    include_str!("input.txt")
-        .as_bytes()
-        .windows(14)
-        .take_while(|&w| 
-            (0 .. 13).any(|i| (i + 1 .. 14).any(|j| w[i] == w[j]))
-        )
-        .count() as u32 + 14
+    find_marker(14)
 }
 
 pub fn execute(part: u8) {
